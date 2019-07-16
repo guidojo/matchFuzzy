@@ -5,10 +5,11 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "prepublish": "yarn build",
+    "prepublish": "npm run snyk-protect; yarn build",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:travis": "jest --coverage --coverageReporters=text-lcov | coveralls"
+    "test:travis": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,7 @@
   "devDependencies": {
     "@types/jest": "22.2.3",
     "coveralls": "^3.0.1",
-    "jest": "22.4.4",
+    "jest": "24.0.0",
     "prettier": "^1.12.1",
     "typescript": "2.8.3"
   },
@@ -44,5 +45,9 @@
     "testMatch": [
       "**/__tests__/*.(ts|tsx)"
     ]
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.193.2"
   }
 }
